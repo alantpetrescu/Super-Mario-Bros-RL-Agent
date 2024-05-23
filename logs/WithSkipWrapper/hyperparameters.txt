@@ -1,0 +1,55 @@
+Toate modelele sunt antrenate pentru 10M de operatii
+model1 { -> n_stack=4, n_skip=4 -> Dezamagitor -> Invata prea incet
+    'batch_size': 64,
+    'n_steps': 2048,
+    'gamma': 0.97,
+    'learning_rate': linear_schedule(5e-5),
+    'ent_coef': 0.001,
+    'clip_range': 0.2,
+    'n_epochs': 2, 
+    'gae_lambda': 0.82, 
+    'max_grad_norm': 0.8, 
+    'vf_coef': 0.84
+}
+
+model2 { -> n_stack=4, n_skip=4 -> Invata prea repede
+    learning_rate: linear_schedule(3e-4),
+    n_steps: 2048,
+    batch_size: 64,
+    n_epochs: 10,
+    gamma: 0.99,
+    gae_lambda: 0.95,
+    clip_range: 0.2,
+    normalize_advantage: True,
+    ent_coef: 0,
+    vf_coef: 0.5,
+    max_grad_norm: 0.5,
+}
+
+model3 { -> n_stack=4, n_skip=4 -> Invata mai bine decat celelalte modele, dar e mai instabil
+    learning_rate: linear_schedule(1e-4),
+    n_steps: 512,
+    batch_size: 64,
+    n_epochs: 10,
+    gamma: 0.99,
+    gae_lambda: 0.95,
+    clip_range: 0.2,
+    normalize_advantage: True,
+    ent_coef: 0,
+    vf_coef: 0.5,
+    max_grad_norm: 0.5,
+}
+
+model4 { -> n_stack=4, n_skip=4
+    learning_rate: linear_schedule(1e-5),
+    n_steps: 512,
+    batch_size: 64,
+    n_epochs: 10,
+    gamma: 0.99,
+    gae_lambda: 0.95,
+    clip_range: 0.2,
+    normalize_advantage: True,
+    ent_coef: 0,
+    vf_coef: 0.5,
+    max_grad_norm: 0.5,
+}

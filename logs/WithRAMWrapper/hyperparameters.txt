@@ -1,0 +1,24 @@
+Toate modelele sunt antrenate pentru 10M de operatii
+model1 { -> n_stack=4, n_skip=4 -> Perfect! Nota 11/10 -> A invatat doar dupa 4.8M de operatii cum sa joace bine
+    learning_rate: linear_schedule(3e-4),
+    n_steps: 2048,
+    batch_size: 64,
+    n_epochs: 10,
+    gamma: 0.99,
+    gae_lambda: 0.95,
+    clip_range: 0.2,
+    normalize_advantage: True,
+    ent_coef: 0,
+    vf_coef: 0.5,
+    max_grad_norm: 0.5,
+}
+
+model1 -> world 1 stage 2 -> try 1 {
+    same hyperparameters as before
+    learns too fast and forgets to learn the first level too
+}
+
+model1 -> world 1 stage 2 -> try 2 {
+    same hyperparameters as before but this time the learning_rate is linear_schedule(1e-4) for 5M operations
+    It forgets and doesn't learn well
+}

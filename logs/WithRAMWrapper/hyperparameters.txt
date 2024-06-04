@@ -22,3 +22,52 @@ model1 -> world 1 stage 2 -> try 2 {
     same hyperparameters as before but this time the learning_rate is linear_schedule(1e-4) for 5M operations
     It forgets and doesn't learn well
 }
+
+model1 -> world 1 stage 2 -> try 3 {
+    Applied EWC with n_samples 2048 and importance 0.5 and lr = linear_schedule(1e-4) for 5M operations
+    Learns ok but learning rate-ul too low
+    also it doesn't forget
+}
+
+model1 -> world 1 stage 2 -> try 4 {
+    Applied EWC with n_samples 2048 and importance 0.5 and lr = linear_schedule(3e-4) for 6M operations
+    Learns way too fast
+}
+
+model1 -> world 1 stage 2 -> try 5 {
+    Applied EWC with n_samples 2048 and importance 0.5 and lr = linear_schedule(2e-4) for 6M operations
+    Tot invata prea repede
+}
+
+model1 -> world 1 stage 2 -> try 6 {
+    Applied EWC with n_samples 2048 and importance 0.5 and lr = 1e-4 for 6M operations
+    Still too fast
+}
+
+model1 -> world 1 stage 2 -> try 7 {
+    Applied EWC with n_samples 2048 and importance 0.5 and lr = linear_schedule(9e-5) for 10M operations
+    Learning rate-ul too low or too much importance on the first task
+}
+
+model1 -> world 1 stage 2 -> try 8 {
+    Am schimbat EWC_utils ca sa calculeze gradientul pe un mini_batch de 64 in loc sa calculeze gradientul
+    pentru fiecare observatie in parte si sa ia in calcul si reteaua de critic, nu numai actorul
+    Applied EWC with n_samples 2048 and importance 0.4 and lr = linear_schedule(1e-5) for 10M operations
+    Learning rate-ul too low or too much importance on the first task
+}
+
+model1 -> world 1 stage 2 -> try 9 {
+    Applied EWC with n_samples 2048 and importance 0.4 and lr = linear_schedule(1e-4) for 10M operations
+    Da, tot prost invata. Ii creste loss-ul la fel ca la celelalte modele
+    Modelul e instabil. Poate sa ii scad din nou importanta si sa folosesc un alt tip de learning scheduler
+}
+
+model1 -> world 1 stage 2 -> try 10 {
+    acelasi lucru ca la agent-ul 9 doar ca de data asta cresc linear_schedulerul la (2e-4) for 10M operations
+    si scad lambda-ul la 0.3. Lambda-ul e prea mic
+}
+
+model1 -> world 1 stage 2 -> try 11 {
+    linear_scheduler(2e-4) for 10M operations
+    lambda = 0.4
+}

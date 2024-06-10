@@ -26,7 +26,7 @@ model2 { -> n_stack=4, n_skip=4 -> Invata prea repede
     max_grad_norm: 0.5,
 }
 
-model3 { -> n_stack=4, n_skip=4 -> Invata mai bine decat celelalte modele, dar e mai instabil
+model3 { -> n_stack=4, n_skip=4 -> Invata mai bine decat celelalte modele, dar e mai instabil (invata prea repede)
     learning_rate: linear_schedule(1e-4),
     n_steps: 512,
     batch_size: 64,

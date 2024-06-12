@@ -1,71 +1,17 @@
-Toate modelele sunt antrenate pentru 10M de operatii
-model1 { -> n_stack=4, n_skip=4 -> Perfect! Nota 11/10 -> A invatat doar dupa 4.8M de operatii cum sa joace bine
-    learning_rate: linear_schedule(3e-4),
-    n_steps: 2048,
-    batch_size: 64,
-    n_epochs: 10,
-    gamma: 0.99,
-    gae_lambda: 0.95,
-    clip_range: 0.2,
-    normalize_advantage: True,
-    ent_coef: 0,
-    vf_coef: 0.5,
-    max_grad_norm: 0.5,
-}
-
 model1 -> world 1 stage 2 -> try 1 {
-    importance is 0.4 and same hyperparameters as before
-    learns too fast and forgets to learn the first level too
-}
-
-model1 -> world 1 stage 2 -> try 2 {
-    importance is 0.4 and same hyperparameters as before but this time the learning_rate is linear_schedule(1e-4) for 5M operations
-    It forgets and doesn't learn well
-}
-
-model1 -> world 1 stage 2 -> try 3 {
-    Applied EWC with n_samples 2048 and importance 0.5 and lr = linear_schedule(1e-4) for 5M operations
-    Learns ok but learning rate-ul too low
-    also it doesn't forget
-}
-
-model1 -> world 1 stage 2 -> try 4 {
-    Applied EWC with n_samples 2048 and importance 0.5 and lr = linear_schedule(3e-4) for 6M operations
-    Learns way too fast
-}
-
-model1 -> world 1 stage 2 -> try 5 {
-    Applied EWC with n_samples 2048 and importance 0.5 and lr = linear_schedule(2e-4) for 6M operations
-    Tot invata prea repede
-}
-
-model1 -> world 1 stage 2 -> try 6 {
-    Applied EWC with n_samples 2048 and importance 0.5 and lr = 1e-4 for 6M operations
-    Still too fast
-}
-
-model1 -> world 1 stage 2 -> try 7 {
-    Applied EWC with n_samples 2048 and importance 0.5 and lr = linear_schedule(9e-5) for 10M operations
-    Learning rate-ul too low or too much importance on the first task
-}
-
-
-##### Aste de jos conteaza
-
-model1 -> world 1 stage 2 -> try 8 {
     Am schimbat EWC_utils ca sa calculeze gradientul pe un mini_batch de 64 in loc sa calculeze gradientul
     pentru fiecare observatie in parte si sa ia in calcul si reteaua de critic, nu numai actorul
     Applied EWC with n_samples 2048 and importance 0.5 and lr = linear_schedule(1e-4) for 5M operations
     Learning rate-ul too low or too much importance on the first task
 }
 
-model1 -> world 1 stage 2 -> try 9 { --> Refacem asta
+model1 -> world 1 stage 2 -> try 2 {
     Applied EWC with n_samples 2048 and importance 0.4 and lr = linear_schedule(1e-4) for 5M operations
     Da, tot prost invata. Ii creste loss-ul la fel ca la celelalte modele
     Modelul e instabil. Poate sa ii scad din nou importanta si sa folosesc un alt tip de learning scheduler
 }
 
-model1 -> world 1 stage 2 -> try 10 {
+model1 -> world 1 stage 2 -> try 3 {
     Applied EWC with n_samples 2048 and importance 0.5 and lr = linear_schedule(5e-5) for 5M operations
     Da, tot prost invata. Ii creste loss-ul la fel ca la celelalte modele
     Modelul e instabil. Poate sa ii scad din nou importanta si sa folosesc un alt tip de learning scheduler

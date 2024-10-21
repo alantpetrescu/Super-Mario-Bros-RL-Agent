@@ -9,4 +9,4 @@ Here is the result of the agent that has been trained using the RAM input:
 ![First level](super_mario_bros_level_1_RAM.gif)
 ![Second level](super_mario_bros_level_2_RAM.gif)
 
-Unfortunately, for the second level, the agent has learned much slower and wasn't able to converge to an optimal policy. If you want to read more about this project, you can access the following [link](https://www.overleaf.com/project/662e2d2d9d8b4f895a76e6b9https://www.overleaf.com/read/kdhwtzpftcwk#b6891e)
+Unfortunately, for the second level, the agent has learned much slower and wasn't able to converge to an optimal policy. If you want to read more about this project, you can access the following [link](https://www.overleaf.com/read/kdhwtzpftcwk#b6891e)
